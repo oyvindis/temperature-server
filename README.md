@@ -46,11 +46,20 @@ $ cd src
 $ touch app.ts
 
 
-
-## Deploy a new version to GCP
+## Deploy first verion to GCP
 
 For fullstendig guide:
 Ref: ```https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app```
+
+```export PROJECT_ID=ois-project-95773```
+
+Deploy ```kubectl create deployment temperature-server --image=gcr.io/${PROJECT_ID}/temperature-server:latest```
+
+then expose with ```kubectl expose deployment temperature-server --type=ClusterIP --port 80 --target-port 3333``
+
+or ```kubectl expose deployment temperature-server --type=LoadBalancer --port 80 --target-port 3333```
+
+## Deploy a new version to GCP
 
 ```export PROJECT_ID=ois-project-95773```
 
