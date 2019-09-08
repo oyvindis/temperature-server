@@ -44,3 +44,23 @@ touch .prettierrc.js
 $ mkdir src
 $ cd src
 $ touch app.ts
+
+
+
+## Deploy a new version to GCP
+
+For fullstendig guide:
+Ref: ```https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app```
+
+```export PROJECT_ID=ois-project-95773```
+
+```docker build -t gcr.io/${PROJECT_ID}/temperature-server:latest .```
+
+```docker push gcr.io/${PROJECT_ID}/temperature-server:v1```
+
+```kubectl set image deployment/hello-web hello-app=gcr.io/${PROJECT_ID}/temperature-server:v2```
+
+Open browser ```http://34.89.148.214/´´´
+
+
+
