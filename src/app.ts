@@ -5,7 +5,7 @@ export const server = {
         const app = express();
         const port = 3333;
         app.get('/', (req, res) => {
-            res.send('Update: The sedulous hyena ate the antelope! - 08.09.2019');
+            res.send('Update: Therese ser på tv! - 08.09.2019, 15:52');
         });
         app.listen(port, err => {
             if (err) {
