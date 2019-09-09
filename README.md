@@ -67,9 +67,15 @@ or ```kubectl expose deployment temperature-server --type=LoadBalancer --port 80
 
 ```docker push gcr.io/${PROJECT_ID}/temperature-server:v1```
 
-```kubectl set image deployment/hello-web hello-app=gcr.io/${PROJECT_ID}/temperature-server:v2```
+```kubectl set image deployment/temperature-server temperature-server=gcr.io/${PROJECT_ID}/temperature-server:latest```
 
 Open browser ```http://34.89.148.214/´´´
+
+## Restart service
+
+```kubectl scale deployment chat --replicas=0```
+
+```kubectl scale deployment chat --replicas=1```
 
 
 
