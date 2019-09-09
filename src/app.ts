@@ -9,7 +9,7 @@ export const server = {
         app.use('/', routes);
 
         app.get('/', (req, res) => {
-            res.send(`Test å skrive ut env.variabel: ${process.env.FIREBASE_TEMPERATURE_CREDENTIALS}`);
+            res.send('temperature-api: <a href="/temperature/getFromDb">Link</a>');
         });
 
         app.listen(port, err => {
