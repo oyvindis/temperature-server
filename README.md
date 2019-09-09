@@ -17,6 +17,20 @@ To run with docker:
 3. Run ```curl -i localhost:8633``` in terminal to test or open browser ```http://localhost:8633```
 4. Run ```docker stop <container-id>``` to stop docker image.
 
+## API
+Registration api exposes several endpoints for CRUD on catalogs and dataset descriptions.
+
+* ```GET /temperature/getFromDb```
+    * Returns yr-temperature from firebase database as JSON.
+* ```GET /temperature/```
+    * TODO.
+    * Parameter
+        - ```id``` : Get catalog with this id.
+* ```GET /temperature/{id}```
+    * TODO.
+    * Parameter
+        - ```id``` : Get temperature with this id.
+        
 ## frontend set up
 npm init
 
@@ -65,7 +79,7 @@ or ```kubectl expose deployment temperature-server --type=LoadBalancer --port 80
 
 ```docker build -t gcr.io/${PROJECT_ID}/temperature-server:latest .```
 
-```docker push gcr.io/${PROJECT_ID}/temperature-server:v1```
+```docker push gcr.io/${PROJECT_ID}/temperature-server:latest```
 
 ```kubectl set image deployment/temperature-server temperature-server=gcr.io/${PROJECT_ID}/temperature-server:latest```
 
@@ -73,9 +87,32 @@ Open browser ```http://34.89.148.214/´´´
 
 ## Restart service
 
-```kubectl scale deployment chat --replicas=0```
+```kubectl scale deployment temperature-server --replicas=0```
 
-```kubectl scale deployment chat --replicas=1```
+```kubectl scale deployment temperature-server --replicas=1```
 
 
 
+## Firebase credentials
+
+upload json file with google shell console.
+
+kubectl create secret generic firebase-temperature-key --from-file=key.json=api-temperature-firebase-adminsdk-2mvwd-07ccdec36b-2.json
+
+update yaml:
+
+volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: firebase-temperature-key
+          
+and
+
+volumeMounts:
+        - name: google-cloud-key
+          mountPath: /var/secrets/google
+        env:
+        - name: FIREBASE_TEMPERATURE_CREDENTIALS
+          value: /var/secrets/google/key.json
+          
+Ref: https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform#step_4_import_credentials_as_a_secret                    
