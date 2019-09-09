@@ -6,8 +6,6 @@ export const server = {
         const app = express();
         const port = 3333;
 
-
-
         app.use('/', routes);
 
         app.get('/', (req, res) => {
