@@ -24,7 +24,7 @@
     "@types/node": "^12.7.4",
     "express": "^4.17.1",
     "firebase-admin": "^8.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "typescript": "^3.6.2"
   }
 }
